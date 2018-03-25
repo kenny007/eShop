@@ -7,24 +7,11 @@ import router from './router'
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
-//const GreetingComponent = { template: `<h1>Hi, you!</h1>` }
+// const GreetingComponent = { template: `<h1>Hi, you!</h1>` }
 
 new Vue({
   el: '#app',
   router,
-  components: { App },
-  template: `
-    <div>
-    <p>{{counter}}</p>
-    <button v-on:click="incrementCounter">++</button>
-    </div>
-  `,
-  data:{
-    counter:''
-  },
-  methods:{
-    incrementCounter(){
-      this.counter++;
-   }
-  }
-});
+  template: '<App />',
+  components: { App }
+})
