@@ -10,6 +10,7 @@ Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 // const GreetingComponent = { template: `<h1>Hi, you!</h1>` }
+// This manages the whole app
 
 new Vue({
   el: '#app',
@@ -18,3 +19,4 @@ new Vue({
   template: '<App />',
   components: { App }
 })
+// the store line can also be done using store:store but since we are using ES6 it will automatically assign it using the same name
