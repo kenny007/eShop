@@ -17,7 +17,9 @@
         </div>
       </router-link>
       <div class="product__action">
-        <product-button :product="product" ></product-button>
+        <product-button :product="product" >
+          
+        </product-button>
       </div>
     </div>
   </div>
