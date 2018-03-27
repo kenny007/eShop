@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button v-if="isAdding" class="btn btn-info right" @click="addToCart"><i class="fa fa-cart-plus"></i> Add to Cart</button>
+    <button v-if="isAdding" class="btn btn-info" @click="addToCart"><i class="fa fa-cart-plus"></i> Add to Cart</button>
     <button v-else class="btn btn-danger" @click="removeFromCart(product.id)">
       <i class="fa fa-trash"></i> Remove from Cart</button>
   </div>

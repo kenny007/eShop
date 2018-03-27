@@ -12,6 +12,7 @@ import Index from '@/theme/admin/Index'
 import New from '@/theme/admin/New'
 import Products from '@/theme/admin/Products'
 import Edit from '@/theme/admin/Edit'
+import Details from '@/theme/Details'
 
 Vue.use(BootstrapVue)
 Vue.use(Router)
@@ -52,6 +53,11 @@ export default new Router({
       path: '/cart',
       name: 'Cart',
       component: Cart
+    },
+    {
+      path: '/details/:id',
+      name: 'Details',
+      component: Details
     }
   ]
 })
