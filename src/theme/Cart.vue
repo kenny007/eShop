@@ -8,10 +8,10 @@
 
 <script>
   export default {
-    name: 'home',
+  name: 'home',
     data () {
       return {
-        msg: 'Welcome to the Cart Page'
+      msg: 'Welcome to the Cart Page'
       }
     }
   }

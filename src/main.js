@@ -14,9 +14,10 @@ Vue.config.productionTip = false
 
 new Vue({
   el: '#app',
-  store,
   router,
+  store,
   template: '<App />',
   components: { App }
 })
-// the store line can also be done using store:store but since we are using ES6 it will automatically assign it using the same name
+// the store line can also be done using store:store but since we are using ES6 it will automatically
+// assign it using the same name

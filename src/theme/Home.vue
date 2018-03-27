@@ -1,26 +1,22 @@
 <template>
   <div>
     <div class="title">
-      <p>{{check}}</p>
-        <button v-on:click="goodLord">Change</button>
-      <h1>{{msg}} -- {{check}}</h1>
+      <h1><i class="fa fa-braille"></i> In Stock </h1> <br/>
     </div>
+    <product-list></product-list>
   </div>
 </template>
 
 <script>
+  import ProductList from '../components/product/ProductList.vue'
   export default {
     name: 'home',
-    data () {
-      return {
-        msg: 'Welcome to Your Vue.js App', 
-        check: 'How are you?'
-      }
-    },
-    methods:{
-      goodLord(){
-        this.check = "I changed it here"
-      }
+    components: {
+      'product-list': ProductList
     }
   }
 </script>
+
+<style scoped>
+
+</style>

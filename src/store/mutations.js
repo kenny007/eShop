@@ -42,8 +42,8 @@ export const productMutations = {
   [UPDATE_PRODUCT_SUCCESS]: (state, payload) => {
     state.showLoader = false
     state.products = state.products.map(p => {
-      if (p._id === payload._id) {
-        payload = {...payload, manufacturer: state.manufacturers.filter(x => x._id === payload.manufacturer)[0]}
+      if (p.id === payload.id) {
+        payload = {...payload}
         return payload
       }
       return p
@@ -54,7 +54,7 @@ export const productMutations = {
   },
   [REMOVE_PRODUCT_SUCCESS]: (state, payload) => {
     state.showLoader = false
-    const index = state.products.findIndex(p => p._id === payload)
+    const index = state.products.findIndex(p => p.id === payload)
     console.debug('index', index)
     state.products.splice(index, 1)
   }
@@ -63,7 +63,7 @@ export const productMutations = {
 export const cartMutations = {
   [ADD_TO_CART]: (state, payload) => state.cart.push(payload),
   [REMOVE_FROM_CART]: (state, payload) => {
-    const index = state.cart.findIndex(p => p._id === payload)
+    const index = state.cart.findIndex(p => p.id === payload)
     state.cart.splice(index, 1)
     console.log(state.cart, state.cart.length, index)
   }
