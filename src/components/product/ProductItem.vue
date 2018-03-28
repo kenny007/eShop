@@ -10,7 +10,7 @@
               <li>{{product.productcode}}</li>
               <li>{{product.name}}</li>
               <li>{{product.description}}</li>
-              <li v-if="!product.instock" >Out of Stock</li>
+              <li v-if="!product.instock" class="text-danger" >Out of Stock</li>
               <li v-else>In Stock</li>
         </ul>
         <h4 class="card-title pricing-card-title">{{product.currency | currency}}{{parseFloat(product.price).toFixed(2)}}</h4> 

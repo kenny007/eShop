@@ -8,7 +8,7 @@ export const productGetters = {
   // Get Product by ID
   productById: (state, getters) => id => {
     if (getters.allProducts.length > 0) {
-      return getters.allProducts.filter(p => p.id === id)[0]
+      return getters.allProducts.filter(p => p.id === id)
     } else {
       return state.product
     }
