@@ -29,28 +29,28 @@ export const productActions = {
   productById ({commit}, payload) {
     commit(PRODUCT_BY_ID)
     // Fetch product by ID from API
-    axios.get(`${API_BASE}/products/${payload}`).then(response => {
+    axios.get(`${API_BASE}/${payload}`).then(response => {
       commit(PRODUCT_BY_ID_SUCCESS, response.data)
     })
   },
   addProduct ({commit}, payload) {
     commit(ADD_PRODUCT)
     // Create a new product via API
-    axios.post(`${API_BASE}/products`, payload).then(response => {
+    axios.post(`${API_BASE}`, payload).then(response => {
       commit(ADD_PRODUCT_SUCCESS, response.data)
     })
   },
   updateProduct ({commit}, payload) {
     commit(UPDATE_PRODUCT)
     // Update product via API
-    axios.put(`${API_BASE}/products/${payload._id}`, payload).then(response => {
+    axios.put(`${API_BASE}/${payload.id}`, payload).then(response => {
       commit(UPDATE_PRODUCT_SUCCESS, response.data)
     })
   },
   removeProduct ({commit}, payload) {
     commit(REMOVE_PRODUCT)
     // Delete product via API
-    axios.delete(`${API_BASE}/products/${payload}`, payload).then(response => {
+    axios.delete(`${API_BASE}/${payload}`, payload).then(response => {
       console.debug('response', response.data)
       commit(REMOVE_PRODUCT_SUCCESS, response.data)
     })

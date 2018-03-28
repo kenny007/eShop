@@ -8,6 +8,11 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+Vue.filter('currency', function (value) {
+  // return '€' + parseFloat(value).toFixed(2)
+  return value.replace(value, '€')
+})
+
 /* eslint-disable no-new */
 // const GreetingComponent = { template: `<h1>Hi, you!</h1>` }
 // This manages the whole app

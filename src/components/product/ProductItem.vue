@@ -1,26 +1,48 @@
 <template>
   <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-    <div class="product">
-      <router-link :to="'/details/'+product.id" class="product-link">
-        <div class="product__image">
+    <div class="card-body">
+      <router-link :to="'/details/'+product.id" class="">
+        <div class="card-title pricing-card-title">
           <img
-            class="img-responsive" :src="product.image" alt="">
+            class="img-responsive" :src="product.image" height="190"  width="190" alt="">
         </div>
-        <div class="product__description">
-          <div class="product__info">
-            <small>{{product.productcode}}</small>
-            <h5>{{product.name}}</h5>
-          </div>
-          <div class="product__price-cart">
-            ${{product.price}}
-          </div>
-        </div>
+        <ul class="list-unstyled mt-3 mb-4">
+              <li>{{product.productcode}}</li>
+              <li>{{product.name}}</li>
+              <li>{{product.description}}</li>
+              <li v-if="!product.instock" >Out of Stock</li>
+              <li v-else>In Stock</li>
+        </ul>
+        <h4 class="card-title pricing-card-title">{{product.currency | currency}}{{parseFloat(product.price).toFixed(2)}}</h4> 
+        <!-- // parseFloat(value).toFixed(2) -->
+        
       </router-link>
       <div class="product__action">
-        <product-button :product="product" ></product-button>
+        <product-button  :product="product" ></product-button>
       </div>
     </div>
   </div>
+
+
+
+<!-- <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Free</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title"> ${{product.price}} </h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>{{product.productcode}}</li>
+              <li>{{product.name}}</li>
+              <li>{{product.description}}</li>
+              <li>{{product.store}}</li>
+            </ul>
+              <product-button :product="product" ></product-button>
+          </div>
+        </div>
+</div> -->
+
 </template>
 
 <script>
