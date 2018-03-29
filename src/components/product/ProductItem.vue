@@ -4,7 +4,7 @@
       <router-link :to="'/details/'+product.id" class="">
         <div class="card-title pricing-card-title">
           <img
-            class="img-responsive" :src="product.image" height="190"  width="190" alt="">
+            class="img-responsive" :src="product.image" alt="">
         </div>
         <ul class="list-unstyled mt-3 mb-4">
               <li>{{product.productcode}}</li>

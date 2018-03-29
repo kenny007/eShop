@@ -22,6 +22,7 @@ export default new Vuex.Store({
     product: {},
     // all products
     products: [],
+    filteredProducts: [],
     storeParam: '',
     loading: false,
     order: 1 //

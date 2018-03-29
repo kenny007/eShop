@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container text-center">
-
+  
   <div class="row">
     <div class="col-md-8">
       <div class="row">
@@ -9,10 +9,10 @@
           <input id="searchText" v-model="searchText" class="form-control py-2" type="text"  placeholder="Enter a product Name" autofocus />
         </div>
         <div class="col-md-3 mb-3">
-          <select id="" class="custom-select d-block py-2" >
+          <select v-model="locationText" @change="executeSearch($event.target.value)" class="custom-select d-block py-2" >
             <option value="">Select to Filter</option>
-           <option value="" v-for="str in storeLocations" v-bind:key="str">
-              {{str}}
+            <option :value="storeL.text" v-for="storeL in storeLocations" v-bind:key="storeL.id">
+              {{storeL.text}} 
             </option>
           </select>
         </div>
@@ -47,8 +47,6 @@
     </li>
 </ul>
 
-
-
       </div>
     </div>
   </div>
@@ -62,30 +60,36 @@ export default {
   data: function() {
     return {
     searchText: null,
+    locationText:'',
     currentPage: 0,
     itemsPerPage: 10,
-    resultCount: 0
+    resultCount: 0,
+    storeLocations: []
     }
   },
   created() {
     //var initialQuery = this.getQueryStringParameterValue('q');
-    //var self = this
+    const vm = this
     if (this.products.length === 0) {
       this.$store.dispatch("allProducts");
       // This is where the action gets called and this is asynchronous
     }
+    setTimeout(function () { 
+      vm.storeLocations = [ 
+      { text: 'Estonia', storeId: 1}, 
+      { text: 'Finland', studId: 2 },];
+     }, 2000)
   },
   computed: {
     filteredProducts(){
        if(!this.searchText){
          return this.products.slice(this.currentPage, this.itemsPerPage)
-       }
-        return this.products.filter((product) =>{
+       }    
+       else if(this.searchText){
+          return this.products.filter((product) => {
           return product.name.match(this.searchText)
         })
-    },
-    storeLocations() {
-      return ["Estonia", "Finland"]
+      }
     },
     products() {
       return this.$store.getters.allProducts
@@ -102,12 +106,6 @@ export default {
       }
     },
     paginate: function(){      
-      // this.$store.state.resultCount = this.products.length;
-      
-      console.log( this.resultCount + " Result count");
-      console.log( this.currentPage + " current page");
-      console.log( this.itemsPerPage + " items per page");
-      console.log( this.totalPages + " Total pages 10");
       if (this.currentPage >= this.totalPages) {
         this.currentPage = Math.max(0, this.totalPages - 1);
       }
@@ -121,12 +119,25 @@ export default {
     setPage: function(pageNumber) {
       this.currentPage = pageNumber;
       console.log(pageNumber);
-    }
+    },
+    executeSearch: function(searchVal) {
+     this.locationText = searchVal 
+     return this.filteredProducts.filter((product)=>{
+        return product.name.match(this.locationText);
+     }) 
+  }
   },
-
   components: {
     "product-item": ProductItem
   }
-  
-};
+}
 </script>
+<style scoped>
+a.first::after {
+  content:'...'
+}
+
+a.last::before {
+  content:'...'
+}
+</style>
