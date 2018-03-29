@@ -20,8 +20,6 @@
               </div>
           </div>
           
-                    
-
           <!-- Botones de compra -->
           <div class="section" style="padding-bottom:20px;">
               <div class="product-details__price-cart">
@@ -30,20 +28,19 @@
           </div>
           
           </div>                                        
-       </div>       
-             
-        </div>
+       </div>                    
+      </div>
       </div>
 
 
 </template>
 
 <script>
-  import ProductButton from './ProductButton'
-  export default {
-    props: ['product'],
-    components: {
-      'product-button': ProductButton
-    }
+import ProductButton from './ProductButton'
+export default {
+  props: ['product'],
+  components: {
+    'product-button': ProductButton
   }
+}
 </script>

@@ -23,8 +23,6 @@
     </div>
   </div>
 
-
-
 <!-- <div class="card-deck mb-3 text-center">
         <div class="card mb-4 box-shadow">
           <div class="card-header">
@@ -46,12 +44,12 @@
 </template>
 
 <script>
-import ProductButton from "./ProductButton.vue";
+import ProductButton from './ProductButton.vue';
 export default {
-  name: "product-item",
-  props: ["product"],
+  name: 'product-item',
+  props: ['product'],
   components: {
-    "product-button": ProductButton
+  'product-button': ProductButton
   }
 };
 </script>

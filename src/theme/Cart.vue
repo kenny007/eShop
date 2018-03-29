@@ -11,15 +11,15 @@
 </template>
 
 <script>
-  import ProductDetails from '../components/product/ProductDetails'
-  export default {
-    data () {
-      return {
-        cart: this.$store.state.cart
-      }
-    },
-    components: {
-      productDetails: ProductDetails
+import ProductDetails from '../components/product/ProductDetails'
+export default {
+  data () {
+    return {
+      cart: this.$store.state.cart
     }
+  },
+  components: {
+    productDetails: ProductDetails
   }
+}
 </script>

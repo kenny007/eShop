@@ -12,5 +12,6 @@ export const productGetters = {
     } else {
       return state.product
     }
-  }
+  },
+  productCount: (state, getters) => { return state.products.length }
 }

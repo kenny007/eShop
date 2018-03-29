@@ -74,3 +74,9 @@ export const cartMutations = {
     console.log(state.cart, state.cart.length, index)
   }
 }
+
+// export const paginationMutations = {
+//   pageCount: (state) => {
+//     state.resultCount = state.products.length
+//   }
+// }

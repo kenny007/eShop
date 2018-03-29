@@ -22,16 +22,9 @@ export default new Vuex.Store({
     product: {},
     // all products
     products: [],
-    loading: false
-    // order: 1,
-
-    // searchText: null,
-
-    // ccn: null,
-
-    // currentPage: 0,
-    // itemsPerPage: 10,
-    // resultCount: 0
+    storeParam: '',
+    loading: false,
+    order: 1 //
   },
   // GETTERS
   getters: Object.assign({}, productGetters),

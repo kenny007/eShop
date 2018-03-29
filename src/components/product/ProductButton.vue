@@ -7,27 +7,27 @@
 </template>
 
 <script>
-import { ADD_TO_CART, REMOVE_FROM_CART } from "../../store/mutation-types";
+import { ADD_TO_CART, REMOVE_FROM_CART } from '../../store/mutation-types'
 
 export default {
-  props: ["product"],
-  data() {
+  props: ['product'],
+  data () {
     return {
       cart: this.$store.state.cart
-    };
+    }
   },
   computed: {
-    isAdding() {
-      return this.cart.indexOf(this.product) < 0;
+    isAdding () {
+      return this.cart.indexOf(this.product) < 0
     }
   },
   methods: {
-    addToCart() {
-      this.$store.commit(ADD_TO_CART, this.product);
+    addToCart () {
+      this.$store.commit(ADD_TO_CART, this.product)
     },
-    removeFromCart(id) {
-      this.$store.commit(REMOVE_FROM_CART, id);
+    removeFromCart (id) {
+      this.$store.commit(REMOVE_FROM_CART, id)
     }
   }
-};
+}
 </script>

@@ -8,15 +8,15 @@
 </template>
 
 <script>
-  import ProductList from '../components/product/ProductList.vue'
-  export default {
-    name: 'home',
-    components: {
-      'product-list': ProductList
-    }
+import ProductList from '../components/product/ProductList.vue'
+export default {
+  name: 'home',
+  components: {
+    'product-list': ProductList
   }
+}
 </script>
 
-<style >
+<style scoped>
 
 </style>
