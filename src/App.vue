@@ -4,9 +4,7 @@
       <h5 class="my-0 mr-md-auto font-weight-normal"><router-link class="p-2 text-dark" to="/"><i class="fa fa-home"></i> E-shop</router-link></h5>
       <nav class="my-2 my-md-0 mr-md-3">
         <router-link class="p-2 text-dark" to="/"><i class="fa fa-home"></i> Home</router-link>
-        <router-link class="p-2 text-dark" to="/admin"><i class="fa fa-user"></i> Admin</router-link>
         <router-link class="p-2 text-dark" to="/"><i class="fa fa-home"></i>Support</router-link>
-        <router-link class="p-2 text-dark" to="/"><i class="fa fa-user"></i> Pricing</router-link>
         <router-link class="p-2 text-dark" to="/cart"><i class="fa fa-card"></i> Cart ({{cartItemsCount}})</router-link>
       </nav>
       <!-- <a class="btn btn-outline-primary" href="#">Sign up</a> -->
