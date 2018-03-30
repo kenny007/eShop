@@ -4,7 +4,7 @@
       <h1><i class="fa fa-superpowers"></i> Your Cart</h1>
     </div>
     <template v-for="product in cart">
-      <product-details-cart :product="product" :key="product.id" ></product-details-cart>
+      <productDetails :product="product" :key="product.id" ></productDetails>
     </template>
   </div>
   <div v-else class="title"><h1><i class="fa fa-superpowers"></i> Your Cart is Empty</h1></div>

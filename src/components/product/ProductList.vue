@@ -28,7 +28,7 @@
   <pagination v-model="page" :items="productsInit.length" :perPage="10" />
       <div class="row">
         <template v-for="product in productsInit">
-          <product-item :product="product"  v-bind:key="product.id"></product-item>
+          <product-item  :product="product"  :key="product.id"></product-item>
         </template>
 
       </div>
@@ -46,7 +46,7 @@ export default {
   data: function() {
     return {
     searchTerm: '',
-    storeLoc: '',
+    storeLoc: 'Estonia',
     stockAvail: true,
     productsInit: [],
     page: 1
@@ -60,7 +60,7 @@ export default {
     var self = this;
     setTimeout(function(){
        self.filterProducts()
-    }, 3000);
+    }, 2000);
   },
   computed: {
     pageOfProducts: function() {

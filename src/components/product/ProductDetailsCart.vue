@@ -1,36 +1,28 @@
 <template>
-   <div>
+  <div class="container">
       <div class="row" style="padding-top:10%">
-        <div class="col-xs-4 col-lg-4 col-md-4 item-photo">
-                    <img :src="product.image" class="img-thumbnail" />
+        <div class="col-xs-2 col-lg-2 col-md-2">
+                    <img class="image-fluid  img-thumbnail"   :src="product.image" />
         </div>
 
-        <div class="col-xs-4 col-lg-6 cold-md-6" style="border:0px solid gray">
-          <h3>{{product.description}}}</h3>  
-          <!-- Precios -->
-          <h6 class="title-price"><small>{{product.code}}</small></h6>
-          <h3 style="margin-top:0px;">{{product.currency | currency}}{{parseFloat(product.price).toFixed(2)}}</h3>
+        <div class="col-xs-4 col-lg-4 col-md-4" style="border:0px solid gray">       
+           <h3>{{product.name}}</h3>
+         </div>
 
-          <!-- Detalles especificos del producto -->
-          <div class="section">
-              <h6 class="title-attr" style="margin-top:15px;" ><small>COLOR</small></h6>                    
-              <div>
-                  <div class="attr" style="width:25px;background:#5a5a5a;"></div>
-                  <div class="attr" style="width:25px;background:white;"></div>
-              </div>
-          </div>
-          
-          <!-- Botones de compra -->
+       <div class="col-xs-2 col-lg-2 col-md-2" style="border:0px solid gray">
+          <h2 class="product-price">{{product.currency | currency}}{{parseFloat(product.price).toFixed(2)}}</h2>
+        </div>
+ 
+         <div class="col-xs-3 col-lg-3 col-md-3" style="border:0px solid gray">  
           <div class="section" style="padding-bottom:20px;">
-              <div class="product-details__price-cart">
-            <h3>{{product.currency | currency}}{{parseFloat(product.price).toFixed(2)}}</h3>
-            <product-button :product="product" ></product-button>
-          </div>
-          
-          </div>                                        
-       </div>                    
+            <product-button :product="product"></product-button>
+          </div>                 
+          </div>                    
+                   
       </div>
       </div>
+
+
 
 
 </template>
