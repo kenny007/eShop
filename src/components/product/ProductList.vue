@@ -1,14 +1,13 @@
 <template>
   <div>
     <div class="container text-center">
-<!--   
       <div class="row">
         <div class="col-md-6 mb-3">
-          <input id="searchText" v-model="searchText" class="form-control py-2" type="text"  placeholder="Enter a product Name" autofocus />
+          <input id="searchText" v-model="searchTerm" class="form-control py-2" type="text"  placeholder="Enter productName/Description" autofocus />
         </div>
 
         <div class="col-md-3 mb-3">
-          <select v-model="locationText" @change="executeSearch($event.target.value)" class="custom-select d-block py-2" >
+          <select v-model="storeLoc" @change="filterProducts($event.target.value)" class="custom-select d-block py-2" >
             <option value="">Select to Filter</option>
             <option :value="storeL.text" v-for="storeL in storeLocations" v-bind:key="storeL.id">
               {{storeL.text}} 
@@ -21,7 +20,7 @@
           <input type="checkbox" checked >
         </div>
 
-      </div> -->
+      </div> 
    
   <div v-show="!productsInit.length" class="text-center text-dark text-info"> Loading Products....</div>
   <Pagination v-model="page" :items="productsInit.length" :perPage="10" />
@@ -45,7 +44,7 @@ export default {
   data: function() {
     return {
     searchTerm: 'br',
-    storel: '',
+    storeLoc: '',
     productsInit: [],
     page: 1
     }
@@ -78,14 +77,14 @@ export default {
     searchTerm: function() {
       this.filterProducts()
     },
-    tech: function() {
+    storeLoc: function() {
       this.filterProducts()
     }
   },
   methods: {
     filterProducts: function() {
       const searchTerm = this.searchTerm.toLowerCase()
-      const storel = this.storel
+      const storeLoc = this.storeLoc
       let result = this.products
 
       if (searchTerm) {
@@ -97,8 +96,8 @@ export default {
         })
       }
 
-      if (storel) {
-        result = result.filter(product => product.store.indexOf(store) >= 0)
+      if (storeLoc) {
+        result = result.filter(product => product.store.search(storeLoc) >= 0)
       }
 
       this.productsInit = result
