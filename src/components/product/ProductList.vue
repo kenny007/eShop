@@ -1,13 +1,12 @@
 <template>
   <div>
     <div class="container text-center">
-  
-  <div class="row">
-    <div class="col-md-8">
+<!--   
       <div class="row">
         <div class="col-md-6 mb-3">
           <input id="searchText" v-model="searchText" class="form-control py-2" type="text"  placeholder="Enter a product Name" autofocus />
         </div>
+
         <div class="col-md-3 mb-3">
           <select v-model="locationText" @change="executeSearch($event.target.value)" class="custom-select d-block py-2" >
             <option value="">Select to Filter</option>
@@ -22,30 +21,14 @@
           <input type="checkbox" checked >
         </div>
 
-      </div>
-    </div>
-   </div>
-
-  <div v-show="!products.length" class="text-center text-dark text-info"> Loading Products....</div>
+      </div> -->
+   
+  <div v-show="!productsInit.length" class="text-center text-dark text-info"> Loading Products....</div>
+  <Pagination v-model="page" :items="productsInit.length" :perPage="10" />
       <div class="row">
-        <template v-for="product in filteredProducts">
+        <template v-for="product in productsInit">
           <product-item :product="product"  v-bind:key="product.id"></product-item>
         </template>
-        
-      <nav aria-label="..." v-if="totalPages > 1" >
-  <ul class="pagination">
-    <li class="page-item"  v-for="pageNumber in totalPages" v-bind:key="pageNumber">
-       <a class="page-link" href="#" @click="setPage(pageNumber)" >{{ pageNumber+1 }}</a>
-    </li>
-   
-  </ul>
-</nav>
-
-<ul>
-    <li v-bind:key="pageNumber" v-for="pageNumber in totalPages" v-if="Math.abs(pageNumber - currentPage) < 3 || pageNumber == totalPages - 1 || pageNumber == 0">
-    <a href="#" @click="setPage(pageNumber)"  :class="{current: currentPage === pageNumber, last: (pageNumber == totalPages - 1 && Math.abs(pageNumber - currentPage) > 3), first:(pageNumber == 0 && Math.abs(pageNumber - currentPage) > 3)}">{{ pageNumber+1 }}</a>
-    </li>
-</ul>
 
       </div>
     </div>
@@ -53,91 +36,81 @@
 </template>
 
 <script>
-import ProductItem from "./ProductItem.vue";
+import ProductItem from './ProductItem.vue'
+import Pagination from './Pagination'
+import getArraySection from '@/utilities/get-array-section'
 
 export default {
   name: "product-list",
   data: function() {
     return {
-    searchText: null,
-    locationText:'',
-    currentPage: 0,
-    itemsPerPage: 10,
-    resultCount: 0,
-    storeLocations: []
+    searchTerm: 'br',
+    storel: '',
+    productsInit: [],
+    page: 1
     }
   },
   created() {
-    //var initialQuery = this.getQueryStringParameterValue('q');
-    const vm = this
     if (this.products.length === 0) {
       this.$store.dispatch("allProducts");
       // This is where the action gets called and this is asynchronous
     }
-    setTimeout(function () { 
-      vm.storeLocations = [ 
-      { text: 'Estonia', storeId: 1}, 
-      { text: 'Finland', studId: 2 },];
-     }, 2000)
+    var self = this;
+    setTimeout(function(){
+       self.filterProducts()
+    }, 3000);
   },
   computed: {
-    filteredProducts(){
-       if(!this.searchText){
-         return this.products.slice(this.currentPage, this.itemsPerPage)
-       }    
-       else if(this.searchText){
-          return this.products.filter((product) => {
-          return product.name.match(this.searchText)
-        })
-      }
+    pageOfProducts: function() {
+      return getArraySection(this.tutorials, this.page, 10)
+    },
+    storeLocations() {
+      return [ 
+      { text: 'Estonia', storeId: 1}, 
+      { text: 'Finland', studId: 2 }
+      ]
     },
     products() {
-      return this.$store.getters.allProducts
+         return this.$store.getters.allProducts
+    }
+  },
+   watch: {
+    searchTerm: function() {
+      this.filterProducts()
     },
-    productCount(){
-      if(this.products.length){
-        this.resultCount = this.products.length
-       return (this.products.length)
-      }
-    },
-    totalPages () {
-      if(this.resultCount){
-       return Math.ceil( this.resultCount / this.itemsPerPage );
-      }
-    },
-    paginate: function(){      
-      if (this.currentPage >= this.totalPages) {
-        this.currentPage = Math.max(0, this.totalPages - 1);
-      }
-      var index =  this.currentPage * this.itemsPerPage;
-      console.log(index + " index");
-      console.log(this.products.slice(index, this.itemsPerPage));
-      return this.products.slice(index, index + this.itemsPerPage);
-      }
+    tech: function() {
+      this.filterProducts()
+    }
   },
   methods: {
-    setPage: function(pageNumber) {
-      this.currentPage = pageNumber;
-      console.log(pageNumber);
-    },
-    executeSearch: function(searchVal) {
-     this.locationText = searchVal 
-     return this.filteredProducts.filter((product)=>{
-        return product.name.match(this.locationText);
-     }) 
-  }
+    filterProducts: function() {
+      const searchTerm = this.searchTerm.toLowerCase()
+      const storel = this.storel
+      let result = this.products
+
+      if (searchTerm) {
+        result = result.filter(product => {
+          return (
+            product.name.toLowerCase().search(searchTerm) >= 0 ||
+            product.description.toLowerCase().search(searchTerm) >= 0
+          )
+        })
+      }
+
+      if (storel) {
+        result = result.filter(product => product.store.indexOf(store) >= 0)
+      }
+
+      this.productsInit = result
+      this.page = 1
+    }
   },
   components: {
-    "product-item": ProductItem
+    "product-item": ProductItem, Pagination
   }
 }
 </script>
-<style scoped>
-a.first::after {
-  content:'...'
-}
 
-a.last::before {
-  content:'...'
-}
+<style >
+
 </style>
