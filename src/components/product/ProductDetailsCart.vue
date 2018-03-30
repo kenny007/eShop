@@ -2,7 +2,7 @@
    <div>
       <div class="row" style="padding-top:10%">
         <div class="col-xs-4 col-lg-4 col-md-4 item-photo">
-                    <img :src="product.image" />
+                    <img :src="product.image" class="img-thumbnail" />
         </div>
 
         <div class="col-xs-4 col-lg-6 cold-md-6" style="border:0px solid gray">

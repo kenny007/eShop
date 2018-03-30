@@ -40,7 +40,11 @@ export default {
   },
   computed: {
     totalPages: function() {
-      return this.items ? Math.ceil(this.items / this.perPage) : 1
+        var pagesComp = Math.ceil(this.items / this.perPage);
+        if(pagesComp > 10){
+          return 10
+        }
+       return this.items ? Math.ceil(this.items / this.perPage) : 1
     },
     count: function() {
       let from = (this.page - 1) * this.perPage + 1
@@ -81,4 +85,27 @@ export default {
   .pagination-component {
     text-align: center;
   }
+
+  a {
+  color: #999;
+}
+.current {
+  color: red;
+}
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+li {
+  display: inline;
+  margin: 5px 5px;
+}
+
+a.first::after {
+  content:'...'
+}
+
+a.last::before {
+  content:'...'
+}
 </style>

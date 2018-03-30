@@ -1,25 +1,35 @@
 <template>
    <div>
       <div class="row" style="padding-top:10%">
-        <div class="col-md-6">
-                    <img class="image-responsive"   :src="product.image" />
+        <div class="col-md-5">
+                    <img class="image-fluid float-right"   :src="product.image" />
         </div>
 
-        <div class="col-xs-4 col-lg-6 cold-md-6" style="border:0px solid gray">
-          <h3>{{product.description}}}</h3>  
-          <!-- Precios -->
-          <h6 class="title-price"><small>{{product.code}}</small></h6>
-          <h3 style="margin-top:0px;">{{product.currency | currency}}{{parseFloat(product.price).toFixed(2)}}</h3>
-
-          <!-- Detalles especificos del producto -->
-          <div class="section">
-              <h6 class="title-attr" style="margin-top:15px;" ><small>COLOR</small></h6>                    
-              <div>
-                  <div class="attr" style="width:25px;background:#5a5a5a;"></div>
-                  <div class="attr" style="width:25px;background:white;"></div>
-              </div>
+        <div class="col-xs-4 col-lg-5 cold-md-5" style="border:0px solid gray">
+          <div class="row">
+             <div class="col-md-12">
+           <h3>{{product.name}}</h3>
           </div>
-          
+         </div>
+         <div class="row">
+        <div class="col-md-12">
+          <span class="label label-primary">Product Code: </span>
+          <span class="monospaced">{{product.productcode}}</span>
+        </div>
+        </div><!-- end row -->
+
+        <div class="row">
+          <div class="col-md-12">
+            <p class="description">
+            {{product.description}}
+            </p>
+          </div>
+        </div><!-- end row -->
+        <div class="row">
+        <div class="col-md-12 bottom-rule">
+          <h2 class="product-price">{{product.currency | currency}}{{parseFloat(product.price).toFixed(2)}}</h2>
+        </div>
+        </div><!-- end row -->
           <!-- Botones de compra -->
           <div class="section" style="padding-bottom:20px;">
               <div class="product-details__price-cart">
@@ -44,3 +54,6 @@ export default {
   }
 }
 </script>
+<style>
+.monospaced { font-family: 'Ubuntu Mono', monospaced ; }
+</style>

@@ -3,7 +3,7 @@
     <div class="container text-center">
       <div class="row">
         <div class="col-md-6 mb-3">
-          <input id="searchText" v-model="searchTerm" class="form-control py-2" type="text"  placeholder="Enter productName/Description" autofocus />
+          <input id="searchText" v-model="searchTerm" class="form-control py-2" type="text"  placeholder="Enter Product Name or Description" autofocus />
         </div>
 
         <div class="col-md-3 mb-3">
@@ -14,16 +14,18 @@
             </option>
           </select>
         </div>
-
-        <div class="col-md-3 mb-3">
-          <label for="" class="custom-control-label"> Availability </label>
-          <input :value="stockAvail" type="checkbox" v-model="stockAvail" > {{stockAvail}}
+        <div class="col-md-2 mb-2">
+          <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" :value="stockAvail" v-model="stockAvail" checked />
+        <label class="form-check-label" for="inlineCheckbox1">Availability</label>
+        </div>
+          
         </div>
 
       </div> 
    
   <div v-show="!productsInit.length" class="text-center text-dark text-info"> Loading Products....</div>
-  <Pagination v-model="page" :items="productsInit.length" :perPage="10" />
+  <pagination v-model="page" :items="productsInit.length" :perPage="10" />
       <div class="row">
         <template v-for="product in productsInit">
           <product-item :product="product"  v-bind:key="product.id"></product-item>
@@ -43,7 +45,7 @@ export default {
   name: "product-list",
   data: function() {
     return {
-    searchTerm: 'br',
+    searchTerm: '',
     storeLoc: '',
     stockAvail: true,
     productsInit: [],
@@ -115,7 +117,7 @@ export default {
     }
   },
   components: {
-    "product-item": ProductItem, Pagination
+    "product-item": ProductItem, "pagination": Pagination
   }
 }
 </script>
