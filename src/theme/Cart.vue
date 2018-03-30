@@ -4,14 +4,14 @@
       <h1><i class="fa fa-superpowers"></i> Your Cart</h1>
     </div>
     <template v-for="product in cart">
-      <product-details :product="product" :key="product.id" ></product-details>
+      <product-details-cart :product="product" :key="product.id" ></product-details-cart>
     </template>
   </div>
   <div v-else class="title"><h1><i class="fa fa-superpowers"></i> Your Cart is Empty</h1></div>
 </template>
 
 <script>
-import ProductDetails from '../components/product/ProductDetails'
+import ProductDetailsCart from '../components/product/ProductDetailsCart'
 export default {
   data () {
     return {
@@ -19,7 +19,7 @@ export default {
     }
   },
   components: {
-    productDetails: ProductDetails
+    productDetails: ProductDetailsCart
   }
 }
 </script>

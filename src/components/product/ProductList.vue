@@ -17,7 +17,7 @@
 
         <div class="col-md-3 mb-3">
           <label for="" class="custom-control-label"> Availability </label>
-          <input type="checkbox" checked >
+          <input :value="stockAvail" type="checkbox" v-model="stockAvail" > {{stockAvail}}
         </div>
 
       </div> 
@@ -45,6 +45,7 @@ export default {
     return {
     searchTerm: 'br',
     storeLoc: '',
+    stockAvail: true,
     productsInit: [],
     page: 1
     }
@@ -61,7 +62,7 @@ export default {
   },
   computed: {
     pageOfProducts: function() {
-      return getArraySection(this.tutorials, this.page, 10)
+      return getArraySection(this.productsInit, this.page, 10)
     },
     storeLocations() {
       return [ 
@@ -79,12 +80,16 @@ export default {
     },
     storeLoc: function() {
       this.filterProducts()
+    },
+    stockAvail: function(){
+      this.filterProducts()
     }
   },
   methods: {
     filterProducts: function() {
       const searchTerm = this.searchTerm.toLowerCase()
       const storeLoc = this.storeLoc
+      const stockAvail = this.stockAvail
       let result = this.products
 
       if (searchTerm) {
@@ -100,6 +105,11 @@ export default {
         result = result.filter(product => product.store.search(storeLoc) >= 0)
       }
 
+      if (stockAvail) {
+        result = result.filter(product => 
+        product.instock.toString().search(stockAvail) >= 0)
+      }
+   
       this.productsInit = result
       this.page = 1
     }
